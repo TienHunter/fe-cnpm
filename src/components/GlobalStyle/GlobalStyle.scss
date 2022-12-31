@@ -1,0 +1,40 @@
+
+:root {
+   --height-header:56px;
+   --width-sidebar:200px;
+   --col-width-sidebar:72px;
+}
+*{
+   padding:0;
+   margin:0;
+   box-sizing: border-box;
+}
+// scrollbar css
+html *::-webkit-scrollbar {
+   border-radius: 0;
+   width: 8px;
+   height: 8px;
+}
+html *::-webkit-scrollbar-thumb {
+   border-radius: 4px;
+   background-color: rgba(0, 0, 0, 0.15);
+}
+
+html *::-webkit-scrollbar-track {
+   border-radius: 0;
+   background-color: rgba(0, 0, 0, 0);
+}
+button,
+input,
+[tabindex] {
+    border: none;
+    outline: none;
+    color: var(--text-color);
+}
+a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+li {
+   list-style: none;
+}

@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { path } from "utils/constants.js";
+import Login from "pages/Login/Login.jsx";
+import HomePage from "pages/HomePage/HomePage";
+import NotFound from "pages/NotFound/NotFound";
+import DefaultLayout from "layouts/DefaultLayout/DefaultLayout";
+import "./App.scss";
+import { useSelector } from "react-redux";
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+   const token = useSelector((state) => state.user.token);
+   return (
+      <BrowserRouter>
+         {!token ? (
+            <Routes>
+               <Route path={path.LOGIN} element={<Login />} />
+               <Route path="*" element={<Navigate to={path.LOGIN} />} />
+            </Routes>
+         ) : (
+            <Routes>
+               <Route path={path.LOGIN} element={<Login />} />
+               <Route
+                  path={path.HOME}
+                  element={
+                     <DefaultLayout>
+                        <HomePage />
+                     </DefaultLayout>
+                  }
+               />
+               <Route path="*" element={<NotFound />} />
+            </Routes>
+         )}
+      </BrowserRouter>
+   );
 }
 
 export default App;

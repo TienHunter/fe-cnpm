@@ -1,0 +1,62 @@
+.wrapper {
+   width: 100%;
+   height: var(--height-header);
+   background-color: green;
+   display: flex;
+   padding: 0 24px;
+}
+.brand {
+   // height: 100%;
+   img {
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+   }
+}
+.content {
+   flex: 1;
+   font-size: 20px;
+   font-weight: bold;
+   color: blue;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+.profile {
+   position: relative;
+   margin: auto;
+   img {
+      height:40px;
+      width:40px;
+      object-fit: contain;
+      border-radius: 50%;
+      border: 1px solid #ccc;
+      cursor: pointer;
+   }
+
+}
+.options {
+   position: absolute;
+   padding: 8px 4px;
+   margin-top: 4px;
+   top: 100%;
+   right: 0;
+   min-width: 120px;
+   max-width: 200px;
+   max-height: 240px;
+   background-color: #fff;
+   border-radius: 4px;
+   border: 1px solid #ccc;
+   box-shadow: 2px 4px 4px #ccc;
+   
+   .option {
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      line-height: 30px;
+      &:hover {
+         background-color: #aaa;
+      }
+   }
+}
