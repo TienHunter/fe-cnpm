@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import classNames from "classnames/bind";
 import { Container } from "react-bootstrap";
 import styles from "./HomePage.module.scss";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
    getHouseholdByPagingAndFilter,
    setPagingAndFilter,
@@ -11,10 +11,13 @@ import * as householdService from "services/householdService";
 import { fieldHousehold, colHousehold } from "utils/constants";
 import BaseTable from "components/Table/Table";
 import BasePaging from "components/Paging/BasePaging";
+import { useDebounce } from "hook";
 let cx = classNames.bind(styles);
 function HomePage() {
    const { households, pageSize, totalRecords, pageNumber, keyword } =
       useSelector((state) => state.household);
+   const [searchValue, setSearchValue] = useState("");
+   const debounceValue = useDebounce(searchValue, 500);
    const dispatch = useDispatch();
    useEffect(() => {
       const apiAllHouseholds = async () => {
@@ -22,7 +25,7 @@ function HomePage() {
          const res = await householdService.getHouseholdByPagingAndFilter(
             pageSize,
             pageNumber,
-            keyword
+            debounceValue
          );
          if (res?.code === 200) {
             dispatch(
@@ -44,7 +47,6 @@ function HomePage() {
       apiAllHouseholds();
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [pageSize, pageNumber, keyword]);
-   // useEffect(() => {}, [households]);
 
    const onChangePage = (newPageNumber) => {
       dispatch(
@@ -60,17 +62,40 @@ function HomePage() {
          setPagingAndFilter({
             pageSize: newPageSize,
             keyword,
-            pageNumber,
+            pageNumber: 1,
          })
       );
    };
+   useEffect(() => {
+      dispatch(
+         setPagingAndFilter({
+            pageSize,
+            keyword: debounceValue,
+            pageNumber: 1,
+         })
+      );
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [debounceValue]);
    return (
       <>
          <div className={cx("wrapper")}>
             <Container>
                <h3 className={cx("title")}>Danh sach ho khau khu dan cu VDT</h3>
                <div className={cx("content")}>
-                  <div className={cx("toolbars")}></div>
+                  <div className={cx("toolbars")}>
+                     <div className={cx("search")}>
+                        <input
+                           type="text"
+                           className={cx("search-input")}
+                           value={searchValue}
+                           onChange={(e) =>
+                              setSearchValue(
+                                 e.target.value[0] === " " ? "" : e.target.value
+                              )
+                           }
+                        />
+                     </div>
+                  </div>
                   <BaseTable
                      data={households}
                      fieldNames={fieldHousehold}
