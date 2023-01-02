@@ -3,6 +3,7 @@
    --height-header:56px;
    --width-sidebar:200px;
    --col-width-sidebar:72px;
+   --text-color:#333;
 }
 *{
    padding:0;
@@ -32,7 +33,7 @@ input,
     color: var(--text-color);
 }
 a {
-    text-decoration: none;
+    text-decoration: none ;
     color: var(--text-color);
 }
 li {

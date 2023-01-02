@@ -1,7 +1,7 @@
 .wrapper {
    width: 100%;
    height: var(--height-header);
-   background-color: green;
+   background-color: rgba(73, 139, 155, 0.705);
    display: flex;
    padding: 0 24px;
 }
@@ -48,6 +48,7 @@
    border-radius: 4px;
    border: 1px solid #ccc;
    box-shadow: 2px 4px 4px #ccc;
+   z-index: 1;
    
    .option {
       cursor: pointer;

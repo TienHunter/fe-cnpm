@@ -4,7 +4,9 @@ const request = axios.create({
    baseURL: process.env.REACT_APP_BACKEND_URL,
    headers: {
       "Content-Type": "application/x-www-form-urlencoded",
-      Authorization: `Bearer ${localStorage.getItem(localStore.TOKEN)}`,
+      Authorization: `Bearer ${JSON.parse(
+         localStorage.getItem(localStore.TOKEN)
+      )}`,
    },
 });
 

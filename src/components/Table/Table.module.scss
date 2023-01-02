@@ -1,0 +1,17 @@
+.table-container {
+   position: relative;
+   max-height: 420px;
+   width: 100%;
+   overflow: auto;
+   background-color: #fff;
+ 
+}
+.table-header {
+   position: -webkit-sticky;
+   position: sticky;
+   top: 0;
+   background-color: aqua;
+   tr {
+      border-width: 0px;
+   }
+}

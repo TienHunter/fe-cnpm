@@ -8,7 +8,6 @@ const initialState = {
 const userReducer = (state = initialState, action) => {
    switch (action.type) {
       case actionType.LOGIN:
-         console.log(action.payload);
          return {
             username: action.payload.username,
             token: action.payload.token,

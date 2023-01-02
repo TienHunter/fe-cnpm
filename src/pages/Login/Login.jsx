@@ -28,6 +28,7 @@ function Login(props) {
             }))
             localStorage.setItem("access_token",JSON.stringify(res.data.token));
             localStorage.setItem("username",JSON.stringify(res.data.user.usename));
+            navigate("/");
          }
          else if(res) {
             setErrorMessage(res.message)
