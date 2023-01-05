@@ -1,10 +1,10 @@
 import classNames from "classnames/bind";
-import style from "./Table.module.scss";
+import style from "./TableHousehold.module.scss";
 import { Button, Modal, Table } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
 const cx = classNames.bind(style);
 
-function BaseTable({ data, fieldNames, colNames, removeRow }) {
+function TableHousehold({ data, fieldNames, colNames, removeRow }) {
    const [showPopup, setShowPopup] = useState(false);
    const [item, setItem] = useState({});
    const [idx, setIdx] = useState(-1);
@@ -25,7 +25,7 @@ function BaseTable({ data, fieldNames, colNames, removeRow }) {
       }
       setShowPopup(false);
    };
-   console.log("re-render");
+   console.log("re-render table");
    return (
       <>
          <div className={cx("table-container")}>
@@ -82,4 +82,4 @@ function BaseTable({ data, fieldNames, colNames, removeRow }) {
       </>
    );
 }
-export default React.memo(BaseTable);
+export default React.memo(TableHousehold);

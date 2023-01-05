@@ -4,6 +4,7 @@ const actionType = {
    GET_HOUSEHOLD_PAGING_FILTER: "GET_HOUSEHOLD_PAGING_FILTER",
    REFRESH: "REFRESH",
    PAGING_FILTER: "PAGING_FILTER",
+   REMOVE_HOUSEHOLD: "REMOVE_HOUSEHOLD",
 };
 const getAllHousehold = (payload) => {
    return {
@@ -29,6 +30,12 @@ const setPagingAndFilter = (payload) => {
       payload,
    };
 };
+const removeHousehold = (payload) => {
+   return {
+      type: actionType.REMOVE_HOUSEHOLD,
+      payload,
+   };
+};
 
 const refresh = () => {
    return {};
@@ -39,4 +46,5 @@ export {
    createHousehold,
    getHouseholdByPagingAndFilter,
    setPagingAndFilter,
+   removeHousehold,
 };

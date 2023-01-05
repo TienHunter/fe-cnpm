@@ -6,6 +6,7 @@ import NotFound from "pages/NotFound/NotFound";
 import DefaultLayout from "layouts/DefaultLayout/DefaultLayout";
 import "./App.scss";
 import { useSelector } from "react-redux";
+import HouseholdPage from "pages/HouseholdPage/HouseholdPage";
 function App() {
    const token = useSelector((state) => state.user.token);
    return (
@@ -23,6 +24,14 @@ function App() {
                   element={
                      <DefaultLayout>
                         <HomePage />
+                     </DefaultLayout>
+                  }
+               />
+               <Route
+                  path={path.HOUSEHOLD}
+                  element={
+                     <DefaultLayout>
+                        <HouseholdPage />
                      </DefaultLayout>
                   }
                />

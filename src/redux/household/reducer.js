@@ -17,8 +17,10 @@ const householdReducer = (state = initialState, action) => {
          };
       case actionType.CREATE_HOUSEHOLD:
          return {
-            household: action.payload,
-            households: [action.payload, ...state.households],
+            ...state,
+            totalRecords: state.totalRecords + 1,
+            household: { ...action.payload },
+            households: [{ ...action.payload }, ...state.households],
          };
       case actionType.GET_HOUSEHOLD_PAGING_FILTER:
          return {
@@ -33,6 +35,26 @@ const householdReducer = (state = initialState, action) => {
             keyword: action.payload.keyword,
             pageSize: action.payload.pageSize,
          };
+      case actionType.REMOVE_HOUSEHOLD:
+         const tmpArray = [...state.households];
+         // let idx = tmpArray.findIndex(
+         //    (household) => household.id === action.payload
+         // );
+         tmpArray.splice(action.payload, 1);
+         if (tmpArray.length === 0) {
+            return {
+               ...state,
+               pageNumber: state.pageNumber === 1 ? 1 : state.pageNumber - 1,
+               totalRecords: state.totalRecords - 1,
+               households: [...tmpArray],
+            };
+         } else {
+            return {
+               ...state,
+               totalRecords: state.totalRecords - 1,
+               households: [...tmpArray],
+            };
+         }
       default:
          return state;
    }

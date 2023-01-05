@@ -2,6 +2,7 @@ import Pagination from "react-bootstrap/Pagination";
 import classNames from "classnames/bind";
 import style from "./Paging.module.scss";
 import { Dropdown, DropdownButton } from "react-bootstrap";
+import React from "react";
 const cx = classNames.bind(style);
 function BasePaging({
    pageSize,
@@ -14,7 +15,7 @@ function BasePaging({
       totalRecords % pageSize
          ? Math.floor(totalRecords / pageSize) + 1
          : Math.floor(totalRecords / pageSize);
-
+   console.log("re-render paging:", pageSize, pageNumber);
    return (
       <div className={cx("wrapper")}>
          <div className={cx("paging-top")}>
@@ -213,4 +214,4 @@ function BasePaging({
    );
 }
 
-export default BasePaging;
+export default React.memo(BasePaging);

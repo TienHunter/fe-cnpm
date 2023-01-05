@@ -24,4 +24,26 @@ const getHouseholdByPagingAndFilter = async (
       return error.response.data;
    }
 };
-export { getAllHousehold, getHouseholdByPagingAndFilter };
+const createNewHousehold = async (newHousehold) => {
+   try {
+      let res = await request.post("/api/households/create", newHousehold);
+      return res.data;
+   } catch (error) {
+      console.log(error);
+      return error.response.data;
+   }
+};
+const deleteHouseholdById = async (householdId) => {
+   try {
+      let res = await request.delete(`/api/households/${householdId}`);
+      return res.data;
+   } catch (error) {
+      console.log(error);
+   }
+};
+export {
+   getAllHousehold,
+   getHouseholdByPagingAndFilter,
+   createNewHousehold,
+   deleteHouseholdById,
+};
